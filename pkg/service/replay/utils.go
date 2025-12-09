@@ -24,6 +24,8 @@ type TestReportVerdict struct {
 	status    bool
 	duration  time.Duration
 	timeTaken string
+	exec      time.Duration
+	wait      time.Duration
 }
 
 func LeftJoinNoise(globalNoise config.GlobalNoise, tsNoise config.GlobalNoise) config.GlobalNoise {

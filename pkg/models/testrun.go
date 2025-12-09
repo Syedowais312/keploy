@@ -5,20 +5,22 @@ import (
 )
 
 type TestReport struct {
-	Version    Version      `json:"version" yaml:"version"`
-	Name       string       `json:"name" yaml:"name"`
-	Status     string       `json:"status" yaml:"status"`
-	Success    int          `json:"success" yaml:"success"`
-	Failure    int          `json:"failure" yaml:"failure"`
-	HighRisk   int          `json:"high_risk,omitempty" yaml:"high-risk,omitempty"`
-	MediumRisk int          `json:"medium_risk,omitempty" yaml:"medium-risk,omitempty"`
-	LowRisk    int          `json:"low_risk,omitempty" yaml:"low-risk,omitempty"`
-	Ignored    int          `json:"ignored" yaml:"ignored"`
-	Total      int          `json:"total" yaml:"total"`
-	Tests      []TestResult `json:"tests" yaml:"tests,omitempty"`
-	TestSet    string       `json:"testSet" yaml:"test_set"`
-	CreatedAt  int64        `json:"created_at" yaml:"created_at"`
-	TimeTaken  string       `json:"time_taken" yaml:"time_taken"`
+	Version       Version      `json:"version" yaml:"version"`
+	Name          string       `json:"name" yaml:"name"`
+	Status        string       `json:"status" yaml:"status"`
+	Success       int          `json:"success" yaml:"success"`
+	Failure       int          `json:"failure" yaml:"failure"`
+	HighRisk      int          `json:"high_risk,omitempty" yaml:"high-risk,omitempty"`
+	MediumRisk    int          `json:"medium_risk,omitempty" yaml:"medium-risk,omitempty"`
+	LowRisk       int          `json:"low_risk,omitempty" yaml:"low-risk,omitempty"`
+	Ignored       int          `json:"ignored" yaml:"ignored"`
+	Total         int          `json:"total" yaml:"total"`
+	Tests         []TestResult `json:"tests" yaml:"tests,omitempty"`
+	TestSet       string       `json:"testSet" yaml:"test_set"`
+	CreatedAt     int64        `json:"created_at" yaml:"created_at"`
+	TimeTaken     string       `json:"time_taken" yaml:"time_taken"`
+	ExecutionTime string       `json:"execution_time,omitempty" yaml:"execution_time,omitempty"`
+	WaitTime      string       `json:"wait_time,omitempty" yaml:"wait_time,omitempty"`
 }
 
 type TestCoverage struct {
@@ -52,7 +54,11 @@ type TestResult struct {
 	Noise        Noise       `json:"noise" yaml:"noise,omitempty"`
 	Result       Result      `json:"result" yaml:"result"`
 	TimeTaken    string      `json:"time_taken" yaml:"time_taken"`
-	FailureInfo  FailureInfo `json:"failure_info,omitempty" yaml:"failure_info,omitempty"`
+	// WaitTime is the time taken by the user-defined delays (like test delay)
+	WaitTime      string      `json:"wait_time,omitempty" yaml:"wait_time,omitempty"`
+	// ExecutionTime is the time taken by the test execution (excluding user-defined delays)
+	ExecutionTime string      `json:"execution_time,omitempty" yaml:"execution_time,omitempty"`
+	FailureInfo   FailureInfo `json:"failure_info,omitempty" yaml:"failure_info,omitempty"`
 }
 
 type FailureInfo struct {
